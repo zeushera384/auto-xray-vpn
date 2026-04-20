@@ -181,7 +181,7 @@ ssh root@<你的服务器IP>
 服务器连接成功后，回到 [主文档](../README.md) 执行一键安装脚本：
 
 ```bash
-curl -O https://raw.githubusercontent.com/<你的用户名>/<仓库名>/main/xray-setup.sh
+curl -O https://github.com/zeushera384/auto-xray-vpn/blob/main/xray-setup.sh
 chmod +x xray-setup.sh
 bash xray-setup.sh
 ```
