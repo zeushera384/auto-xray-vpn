@@ -101,7 +101,7 @@ ufw allow 22/tcp
 ### 1. 下载脚本到服务器
 
 ```bash
-curl -O https://raw.githubusercontent.com/<你的用户名>/<仓库名>/main/xray-setup.sh
+curl -O https://github.com/zeushera384/auto-xray-vpn/blob/main/xray-setup.sh
 chmod +x xray-setup.sh
 ```
 
