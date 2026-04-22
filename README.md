@@ -2,6 +2,64 @@
 
 Ubuntu / Debian 服务器上一键部署 **Xray VLESS + Reality** 代理节点，并自动生成 Clash 客户端配置。
 
+---
+
+## 快速开始
+
+### 1. 下载脚本到服务器
+
+```bash
+curl -O https://github.com/zeushera384/auto-xray-vpn/blob/main/xray-setup.sh
+chmod +x xray-setup.sh
+```
+
+### 2. 执行脚本
+
+```bash
+bash xray-setup.sh
+```
+
+运行后按提示输入两个参数：
+
+```
+监听端口 [默认 443]: 
+Reality 伪装域名 [默认 www.microsoft.com]: 
+```
+
+直接回车即使用默认值，脚本随后全自动完成所有步骤。
+
+### 3. 获取 Clash 配置
+
+脚本执行成功后，配置文件自动保存在服务器的 `/root/clash-proxy.yaml`：
+
+```bash
+cat /root/clash-proxy.yaml
+```
+
+将输出内容复制到本地 Clash 的 `config.yaml` 中，切换到该节点即可。
+
+---
+
+## 生成的 Clash 配置示例
+
+```yaml
+proxies:
+  - name: "MyVPS-Reality"
+    type: vless
+    server: <服务器IP>
+    port: 443
+    uuid: <自动生成>
+    flow: xtls-rprx-vision
+    tls: true
+    network: tcp
+    reality-opts:
+      public-key: <自动生成>
+      short-id: <自动生成>
+    servername: www.microsoft.com
+    client-fingerprint: chrome
+```
+---
+
 > 📖 **还没有云主机？** 请先阅读 [云主机购买与配置教程](vps-guide.md)，以阿里云国际版和 Vultr 为例，从注册账号到登录服务器手把手说明。
 
 ---
@@ -92,63 +150,6 @@ bash xray-setup.sh
 ```bash
 # 确保 SSH 端口已放行（默认 22）
 ufw allow 22/tcp
-```
-
----
-
-## 快速开始
-
-### 1. 下载脚本到服务器
-
-```bash
-curl -O https://github.com/zeushera384/auto-xray-vpn/blob/main/xray-setup.sh
-chmod +x xray-setup.sh
-```
-
-### 2. 执行脚本
-
-```bash
-bash xray-setup.sh
-```
-
-运行后按提示输入两个参数：
-
-```
-监听端口 [默认 443]: 
-Reality 伪装域名 [默认 www.microsoft.com]: 
-```
-
-直接回车即使用默认值，脚本随后全自动完成所有步骤。
-
-### 3. 获取 Clash 配置
-
-脚本执行成功后，配置文件自动保存在服务器的 `/root/clash-proxy.yaml`：
-
-```bash
-cat /root/clash-proxy.yaml
-```
-
-将输出内容复制到本地 Clash 的 `config.yaml` 中，切换到该节点即可。
-
----
-
-## 生成的 Clash 配置示例
-
-```yaml
-proxies:
-  - name: "MyVPS-Reality"
-    type: vless
-    server: <服务器IP>
-    port: 443
-    uuid: <自动生成>
-    flow: xtls-rprx-vision
-    tls: true
-    network: tcp
-    reality-opts:
-      public-key: <自动生成>
-      short-id: <自动生成>
-    servername: www.microsoft.com
-    client-fingerprint: chrome
 ```
 
 ---
